@@ -28,6 +28,7 @@ import MultiFormatUPCEANReader from './MultiFormatUPCEANReader';
 import OneDReader from './OneDReader';
 import RSSExpandedReader from './rss/expanded/RSSExpandedReader';
 import RSS14Reader from './rss/RSS14Reader';
+import CodaBarReader from './CodaBarReader';
 
 /**
  * @author Daniel Switkin <dswitkin@google.com>
@@ -61,9 +62,9 @@ export default class MultiFormatOneDReader extends OneDReader {
       if (possibleFormats.includes(BarcodeFormat.ITF)) {
         this.readers.push(new ITFReader());
       }
-      // if (possibleFormats.includes(BarcodeFormat.CODABAR)) {
-      //    this.readers.push(new CodaBarReader());
-      // }
+      if (possibleFormats.includes(BarcodeFormat.CODABAR)) {
+        this.readers.push(new CodaBarReader());
+      }
       if (possibleFormats.includes(BarcodeFormat.RSS_14)) {
         this.readers.push(new RSS14Reader());
       }
@@ -74,7 +75,7 @@ export default class MultiFormatOneDReader extends OneDReader {
     if (this.readers.length === 0) {
       this.readers.push(new MultiFormatUPCEANReader(hints));
       this.readers.push(new Code39Reader());
-      // this.readers.push(new CodaBarReader());
+      this.readers.push(new CodaBarReader());
       // this.readers.push(new Code93Reader());
       this.readers.push(new MultiFormatUPCEANReader(hints));
       this.readers.push(new Code128Reader());
